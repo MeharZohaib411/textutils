@@ -4,12 +4,11 @@ import './App.css';
 import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import Alert from './components/Alert';
-// import About from './components/About';
-// import { Link } from 'react-router-dom';
-// import {
-//   Routes,
-//   Route,
-// } from "react-router-dom";
+import About from './components/About';
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState ('light');
@@ -30,7 +29,7 @@ function App() {
    const togglemode =()=>{
     if (mode=== 'light') {
       setMode('dark');
-      document.body.style.backgroundColor = 'grey';
+      document.body.style.backgroundColor = '#042743';
       showAlert("Dark mode has been enabled","success");
     }
     else{
@@ -44,22 +43,30 @@ function App() {
   return (
    <>
    
-<Navbar titel="Textutils" AboutText=" About Textutils" mode={mode} togglemode={togglemode}/>
+<Navbar titel="Textutils"  mode={mode} togglemode={togglemode} key={new Date()}/>
 <Alert alert ={alert} />
 
 
 <div className="container my-3">
   
-{/* /* <Routes>
-            <Route exact path="/about" element={<About/>} >
-            </Route> */
-            /* /* <Route exact path="/home" element={<TextForm showAlert={showAlert} heading="Enter your text to Analyse below" mode={mode}/>}>
+         <Routes>
+         <Route exact path="/" element={<TextForm showAlert={showAlert} heading="Try TextUtils-word counter,char counter,remove extra spaces" mode={mode}/>} >
+            </Route> 
+         <Route exact path="/home" element={<TextForm showAlert={showAlert} heading="Try TextUtils-word counter,char counter,remove extra spaces" mode={mode}/>}>
             </Route>
-          </Routes> */}
-          <TextForm showAlert={showAlert} heading="Enter your text to Analyse below" mode={mode}/>
+            <Route exact path="/about" element={<About/>} >
+            </Route> 
+           
+          </Routes>
 
+
+          {/* <Route exact path="/">
+            <TextForm showAlert={showAlert} heading="Try TextUtils - word counter, character counter, remove extra spaces" mode={mode}/>
+          </Route>
+          <Route  path="/about">
+            <About mode={mode} />
+          </Route> */}
         </div>
-
    </>
   );
 }
